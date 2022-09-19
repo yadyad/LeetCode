@@ -1,0 +1,27 @@
+import imp
+from typing import List
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        letterDict = {
+            "2" : "abc" ,
+            "3" : "def" ,
+            "4" : "ghi" ,
+            "5" : "jkl" ,
+            "6" : "mno" ,
+            "7" : "pqrs" ,
+            "8" : "tuv" ,
+            "9" : "wxyz"
+        }
+        res = []
+        def backtracking(i,str):
+            if(len(str)==len(digits)):
+                res.append(str)
+                return
+            
+            for c in letterDict[digits[i]]:
+                backtracking(i+1,str+c)
+        if digits:
+            backtracking(0,"")
+        return res 
+sol = Solution()
+print(sol.letterCombinations("23"))

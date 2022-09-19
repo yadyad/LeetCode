@@ -1,0 +1,28 @@
+
+from typing import List
+import sys
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        smallestDiff = sys.maxsize
+        outputSum = 0
+        nums.sort()
+        for position,value in enumerate(nums[0:len(nums)-2]):
+            i = position+1
+            j = len(nums)-1
+            while(i<j):
+                sum = value + nums[i]+nums[j]
+                diff = abs(target - sum)
+                if(diff<smallestDiff):
+                    smallestDiff = diff
+                    outputSum = sum
+                if(sum<target):
+                    i+=1
+                elif(sum>target):
+                    j-=1
+                else:
+                    return sum
+        return outputSum
+            
+
+sol = Solution()
+print(sol.threeSumClosest([-1,2,1,-4],1))
