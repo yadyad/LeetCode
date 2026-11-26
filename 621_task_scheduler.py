@@ -24,5 +24,13 @@ class Solution:
                 heapq.heappush(heap, -task_count)
 
         return timer
-
+class Solution2:
+    def leastInterval(self, tasks: list[str], n: int) -> int:
+        c = Counter(tasks)
+        most_freq = max(c.values())
+        most_freq_count = list(c.values()).count(most_freq)
+        slots = (most_freq - 1) * (n - most_freq_count + 1)
+        remaining = len(tasks) - (most_freq * most_freq_count)
+        idle = max(0, slots - remaining)
+        return len(tasks) + idle
 
